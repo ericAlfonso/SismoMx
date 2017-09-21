@@ -1,0 +1,5 @@
+package com.sismo.mx.persistence;
+
+public class AppUserDAOImpl {
+
+}

@@ -1,0 +1,8 @@
+package com.sismo.mx.rest;
+
+import org.springframework.http.ResponseEntity;
+
+public interface AppUserCtrl {
+
+	ResponseEntity getAllAppUsers();
+}

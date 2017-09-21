@@ -1,0 +1,30 @@
+package com.sismo.mx.services;
+
+import java.util.List;
+
+import org.apache.log4j.Logger;
+import org.hibernate.annotations.common.util.impl.Log_.logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.sismo.mx.commons.AppUserService;
+import com.sismo.mx.commons.dto.AppUserDTO;
+import com.sismo.mx.persistence.AppUserDAO;
+
+@Service
+@Transactional
+public class AppUserServiceImpl implements AppUserService{
+	
+	private static final Logger logger = Logger.getLogger(AppUserService.class);
+
+	@Autowired private AppUserDAO appUserDAO;
+	
+	@Override
+	public List<AppUserDTO> getAllAppUsers() {
+		logger.info("SERVICE: getAllAppUsers method");
+		
+		return null;
+	}
+
+}

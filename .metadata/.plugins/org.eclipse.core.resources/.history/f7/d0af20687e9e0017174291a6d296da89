@@ -1,0 +1,9 @@
+package com.sismo.mx.rest.parser;
+
+import com.sismo.mx.commons.dto.AppUserDTO;
+import com.sismo.mx.rest.vo.AppUserVO;
+
+public interface AppUserParser {
+
+	AppUserVO parseToUserVO(AppUserDTO appUserDTO);
+}

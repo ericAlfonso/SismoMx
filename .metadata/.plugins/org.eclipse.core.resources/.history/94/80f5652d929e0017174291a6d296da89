@@ -1,0 +1,39 @@
+package com.sismo.mx.commons.dto;
+
+import javax.validation.constraints.NotNull;
+
+public class FamiliarDTO {
+	
+	@NotNull
+	private String email;
+	@NotNull
+	private String fullname;
+	@NotNull
+	private Integer contacto;
+	private String image;
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getFullname() {
+		return fullname;
+	}
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
+	}
+	public Integer getContacto() {
+		return contacto;
+	}
+	public void setContacto(Integer contacto) {
+		this.contacto = contacto;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+}

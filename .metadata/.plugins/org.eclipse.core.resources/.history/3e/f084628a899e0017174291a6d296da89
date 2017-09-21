@@ -1,0 +1,8 @@
+package com.sismo.mx.rest.vo;
+
+public class EmailVO {
+
+	private String to;
+	private String subject;
+	private String body;
+}

@@ -1,0 +1,39 @@
+package com.sismo.mx.rest;
+
+import java.util.List;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.sismo.mx.commons.AppUserService;
+import com.sismo.mx.commons.dto.AppUserDTO;
+import com.sismo.mx.rest.parser.AppUserParser;
+import com.sismo.mx.rest.vo.AppUserVO;
+
+@RestController
+@RequestMapping("/users")
+public class AppUserCtrlImpl implements AppUserCtrl{
+
+	private static final Logger logger = Logger.getLogger(AppUserCtrl.class);
+	
+	@Autowired private AppUserService appUserService;
+	@Autowired private AppUserParser appUserParser;
+	
+	@Override
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity getAllAppUsers() {
+		logger.info("CTRL: getAllAppUsers method");
+		
+		List<AppUserDTO> appUserDTOs = 
+				this.appUserService.getAllAppUsers();
+		
+		List<AppUserVO> appUserVOs = this.appUserParser.parseToUserVOList(appUserDTOs);
+		
+	}
+
+	
+}

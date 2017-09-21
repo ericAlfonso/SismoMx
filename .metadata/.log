@@ -1,0 +1,293 @@
+!SESSION 2017-09-20 21:06:47.696 -----------------------------------------------
+eclipse.buildId=3.8.4.201703310825-RELEASE-e46
+java.version=1.8.0_121
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_MX
+Framework arguments:  -product org.springsource.sts.ide
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.springsource.sts.ide
+
+!ENTRY org.mule.tooling.amc 4 0 2017-09-20 21:07:43.656
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.mule.tooling.amc [996]
+  Bundle was not resolved because of a uses contraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.mule.tooling.amc [osgi.identity; type="osgi.bundle"; version:Version="6.2.5.201705081532"; osgi.identity="org.mule.tooling.amc"; singleton:="true"] because it is exposed to package 'org.codehaus.jackson.schema' from resources jackson-mapper-asl [osgi.identity; type="osgi.bundle"; version:Version="1.8.3"; osgi.identity="jackson-mapper-asl"] and org.codehaus.jackson.mapper [osgi.identity; type="osgi.bundle"; version:Version="1.9.13"; osgi.identity="org.codehaus.jackson.mapper"] via two dependency chains.
+
+Chain 1:
+  org.mule.tooling.amc [osgi.identity; type="osgi.bundle"; version:Version="6.2.5.201705081532"; osgi.identity="org.mule.tooling.amc"; singleton:="true"]
+    require: (osgi.wiring.bundle=jackson-mapper-asl)
+     |
+    provide: osgi.wiring.bundle: jackson-mapper-asl
+  jackson-mapper-asl [osgi.identity; type="osgi.bundle"; version:Version="1.8.3"; osgi.identity="jackson-mapper-asl"]
+
+Chain 2:
+  org.mule.tooling.amc [osgi.identity; type="osgi.bundle"; version:Version="6.2.5.201705081532"; osgi.identity="org.mule.tooling.amc"; singleton:="true"]
+    require: (osgi.wiring.bundle=jackson-jaxrs)
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="1.8.3"; osgi.wiring.bundle="jackson-jaxrs"
+  jackson-jaxrs [osgi.identity; type="osgi.bundle"; version:Version="1.8.3"; osgi.identity="jackson-jaxrs"]
+    import: (&(osgi.wiring.package=org.codehaus.jackson.map.type)(version>=1.8.3))
+     |
+    export: osgi.wiring.package: org.codehaus.jackson.map.type; uses:=org.codehaus.jackson.schema
+    export: osgi.wiring.package=org.codehaus.jackson.schema
+  org.codehaus.jackson.mapper [osgi.identity; type="osgi.bundle"; version:Version="1.9.13"; osgi.identity="org.codehaus.jackson.mapper"]
+	at org.eclipse.osgi.container.Module.start(Module.java:444)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1620)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1599)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1571)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1514)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.ui 2 2 2017-09-20 21:09:24.221
+!MESSAGE org.eclipse.jdt.junit.ResultView: Deprecated relationship "fast" should be converted to "stack".
+
+!ENTRY org.eclipse.ui 2 2 2017-09-20 21:09:24.250
+!MESSAGE org.springframework.ide.eclipse.aop.ui.navigator.aopReferenceModelNavigator: Deprecated relationship "fast" should be converted to "stack".
+
+!ENTRY org.eclipse.ui 2 2 2017-09-20 21:09:24.251
+!MESSAGE org.eclipse.contribution.xref.ui.views.XReferenceView: Deprecated relationship "fast" should be converted to "stack".
+
+!ENTRY org.eclipse.jface.text 2 0 2017-09-20 21:09:31.275
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2017-09-20 21:09:31.276
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+
+!ENTRY org.eclipse.egit.ui 2 0 2017-09-20 21:09:43.730
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Eric'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.mule.tooling.ui 2 0 2017-09-20 21:09:47.462
+!MESSAGE Could not reset the Mule perspective
+
+!ENTRY org.eclipse.equinox.p2.metadata.repository 4 1000 2017-09-20 21:10:01.434
+!MESSAGE No repository found at http://download.eclipse.org/tools/mylyn/update/extras.
+
+!ENTRY org.eclipse.equinox.p2.metadata.repository 4 1000 2017-09-20 21:10:40.150
+!MESSAGE No repository found at http://download.eclipse.org/tools/mylyn/update/weekly/extras.
+
+!ENTRY org.mule.tooling.core 1 0 2017-09-20 21:11:28.950
+!MESSAGE Generating unique Studio Id = STUDIO-d6560387-b596-400a-8d41-089fbe0649b5-15059598889482748
+
+!ENTRY org.eclipse.equinox.p2.transport.ecf 2 0 2017-09-20 21:13:30.266
+!MESSAGE Connection to http://download.eclipse.org/tools/mylyn/update/extras/site.xml failed on Connection timed out: connect. Retry attempt 0 started
+!STACK 0
+java.net.ConnectException: Connection timed out: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at org.eclipse.ecf.internal.provider.filetransfer.httpclient4.ECFHttpClientProtocolSocketFactory.connectSocket(ECFHttpClientProtocolSocketFactory.java:86)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection(DefaultClientConnectionOperator.java:177)
+	at org.apache.http.impl.conn.AbstractPoolEntry.open(AbstractPoolEntry.java:144)
+	at org.apache.http.impl.conn.AbstractPooledConnAdapter.open(AbstractPooledConnAdapter.java:131)
+	at org.apache.http.impl.client.DefaultRequestDirector.tryConnect(DefaultRequestDirector.java:611)
+	at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:446)
+	at org.apache.http.impl.client.AbstractHttpClient.doExecute(AbstractHttpClient.java:863)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:82)
+	at org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientRetrieveFileTransfer.performConnect(HttpClientRetrieveFileTransfer.java:1084)
+	at org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientRetrieveFileTransfer.access$0(HttpClientRetrieveFileTransfer.java:1075)
+	at org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientRetrieveFileTransfer$1.performFileTransfer(HttpClientRetrieveFileTransfer.java:1071)
+	at org.eclipse.ecf.filetransfer.FileTransferJob.run(FileTransferJob.java:74)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.jface.text 2 0 2017-09-20 22:04:08.134
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2017-09-20 22:04:08.135
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+!SESSION 2017-09-21 04:14:27.373 -----------------------------------------------
+eclipse.buildId=3.8.4.201703310825-RELEASE-e46
+java.version=1.8.0_121
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_MX
+Framework arguments:  -product org.springsource.sts.ide
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.springsource.sts.ide
+
+!ENTRY org.mule.tooling.amc 4 0 2017-09-21 04:14:30.634
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.mule.tooling.amc [996]
+  Bundle was not resolved because of a uses contraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.mule.tooling.amc [osgi.identity; type="osgi.bundle"; version:Version="6.2.5.201705081532"; osgi.identity="org.mule.tooling.amc"; singleton:="true"] because it is exposed to package 'org.codehaus.jackson.schema' from resources jackson-mapper-asl [osgi.identity; type="osgi.bundle"; version:Version="1.8.3"; osgi.identity="jackson-mapper-asl"] and org.codehaus.jackson.mapper [osgi.identity; type="osgi.bundle"; version:Version="1.9.13"; osgi.identity="org.codehaus.jackson.mapper"] via two dependency chains.
+
+Chain 1:
+  org.mule.tooling.amc [osgi.identity; type="osgi.bundle"; version:Version="6.2.5.201705081532"; osgi.identity="org.mule.tooling.amc"; singleton:="true"]
+    require: (osgi.wiring.bundle=jackson-mapper-asl)
+     |
+    provide: osgi.wiring.bundle: jackson-mapper-asl
+  jackson-mapper-asl [osgi.identity; type="osgi.bundle"; version:Version="1.8.3"; osgi.identity="jackson-mapper-asl"]
+
+Chain 2:
+  org.mule.tooling.amc [osgi.identity; type="osgi.bundle"; version:Version="6.2.5.201705081532"; osgi.identity="org.mule.tooling.amc"; singleton:="true"]
+    require: (osgi.wiring.bundle=jackson-jaxrs)
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="1.8.3"; osgi.wiring.bundle="jackson-jaxrs"
+  jackson-jaxrs [osgi.identity; type="osgi.bundle"; version:Version="1.8.3"; osgi.identity="jackson-jaxrs"]
+    import: (&(osgi.wiring.package=org.codehaus.jackson.map.type)(version>=1.8.3))
+     |
+    export: osgi.wiring.package: org.codehaus.jackson.map.type; uses:=org.codehaus.jackson.schema
+    export: osgi.wiring.package=org.codehaus.jackson.schema
+  org.codehaus.jackson.mapper [osgi.identity; type="osgi.bundle"; version:Version="1.9.13"; osgi.identity="org.codehaus.jackson.mapper"]
+	at org.eclipse.osgi.container.Module.start(Module.java:444)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1620)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1599)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1571)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1514)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.core.resources 2 10035 2017-09-21 04:14:38.394
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.jface.text 2 0 2017-09-21 04:14:48.230
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2017-09-21 04:14:48.237
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+
+!ENTRY org.eclipse.egit.ui 2 0 2017-09-21 04:14:53.190
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Eric'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.mule.tooling.ui 2 0 2017-09-21 04:14:54.878
+!MESSAGE Could not reset the Mule perspective
+
+!ENTRY org.eclipse.equinox.p2.metadata.repository 4 1000 2017-09-21 04:15:10.004
+!MESSAGE No repository found at http://download.eclipse.org/tools/mylyn/update/extras.
+
+!ENTRY org.eclipse.equinox.p2.metadata.repository 4 1000 2017-09-21 04:15:28.400
+!MESSAGE No repository found at http://download.eclipse.org/tools/mylyn/update/weekly/extras.
+!SESSION 2017-09-21 04:34:17.570 -----------------------------------------------
+eclipse.buildId=3.8.4.201703310825-RELEASE-e46
+java.version=1.8.0_121
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_MX
+Framework arguments:  -product org.springsource.sts.ide
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.springsource.sts.ide
+
+!ENTRY org.mule.tooling.amc 4 0 2017-09-21 04:34:20.814
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.mule.tooling.amc [996]
+  Bundle was not resolved because of a uses contraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.mule.tooling.amc [osgi.identity; type="osgi.bundle"; version:Version="6.2.5.201705081532"; osgi.identity="org.mule.tooling.amc"; singleton:="true"] because it is exposed to package 'org.codehaus.jackson.schema' from resources jackson-mapper-asl [osgi.identity; type="osgi.bundle"; version:Version="1.8.3"; osgi.identity="jackson-mapper-asl"] and org.codehaus.jackson.mapper [osgi.identity; type="osgi.bundle"; version:Version="1.9.13"; osgi.identity="org.codehaus.jackson.mapper"] via two dependency chains.
+
+Chain 1:
+  org.mule.tooling.amc [osgi.identity; type="osgi.bundle"; version:Version="6.2.5.201705081532"; osgi.identity="org.mule.tooling.amc"; singleton:="true"]
+    require: (osgi.wiring.bundle=jackson-mapper-asl)
+     |
+    provide: osgi.wiring.bundle: jackson-mapper-asl
+  jackson-mapper-asl [osgi.identity; type="osgi.bundle"; version:Version="1.8.3"; osgi.identity="jackson-mapper-asl"]
+
+Chain 2:
+  org.mule.tooling.amc [osgi.identity; type="osgi.bundle"; version:Version="6.2.5.201705081532"; osgi.identity="org.mule.tooling.amc"; singleton:="true"]
+    require: (osgi.wiring.bundle=jackson-jaxrs)
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="1.8.3"; osgi.wiring.bundle="jackson-jaxrs"
+  jackson-jaxrs [osgi.identity; type="osgi.bundle"; version:Version="1.8.3"; osgi.identity="jackson-jaxrs"]
+    import: (&(osgi.wiring.package=org.codehaus.jackson.map.type)(version>=1.8.3))
+     |
+    export: osgi.wiring.package: org.codehaus.jackson.map.type; uses:=org.codehaus.jackson.schema
+    export: osgi.wiring.package=org.codehaus.jackson.schema
+  org.codehaus.jackson.mapper [osgi.identity; type="osgi.bundle"; version:Version="1.9.13"; osgi.identity="org.codehaus.jackson.mapper"]
+	at org.eclipse.osgi.container.Module.start(Module.java:444)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1620)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1599)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1571)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1514)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.egit.ui 2 0 2017-09-21 04:34:37.495
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Eric'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.equinox.p2.metadata.repository 4 1000 2017-09-21 04:34:48.301
+!MESSAGE No repository found at http://download.eclipse.org/tools/mylyn/update/extras.
+
+!ENTRY org.eclipse.equinox.p2.metadata.repository 4 1000 2017-09-21 04:35:10.473
+!MESSAGE No repository found at http://download.eclipse.org/tools/mylyn/update/weekly/extras.
+!SESSION 2017-09-21 10:04:57.459 -----------------------------------------------
+eclipse.buildId=3.8.4.201703310825-RELEASE-e46
+java.version=1.8.0_121
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_MX
+Framework arguments:  -product org.springsource.sts.ide
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.springsource.sts.ide
+
+!ENTRY org.mule.tooling.amc 4 0 2017-09-21 10:05:02.202
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.mule.tooling.amc [996]
+  Bundle was not resolved because of a uses contraint violation.
+  org.osgi.service.resolver.ResolutionException: Uses constraint violation. Unable to resolve resource org.mule.tooling.amc [osgi.identity; type="osgi.bundle"; version:Version="6.2.5.201705081532"; osgi.identity="org.mule.tooling.amc"; singleton:="true"] because it is exposed to package 'org.codehaus.jackson.schema' from resources jackson-mapper-asl [osgi.identity; type="osgi.bundle"; version:Version="1.8.3"; osgi.identity="jackson-mapper-asl"] and org.codehaus.jackson.mapper [osgi.identity; type="osgi.bundle"; version:Version="1.9.13"; osgi.identity="org.codehaus.jackson.mapper"] via two dependency chains.
+
+Chain 1:
+  org.mule.tooling.amc [osgi.identity; type="osgi.bundle"; version:Version="6.2.5.201705081532"; osgi.identity="org.mule.tooling.amc"; singleton:="true"]
+    require: (osgi.wiring.bundle=jackson-mapper-asl)
+     |
+    provide: osgi.wiring.bundle: jackson-mapper-asl
+  jackson-mapper-asl [osgi.identity; type="osgi.bundle"; version:Version="1.8.3"; osgi.identity="jackson-mapper-asl"]
+
+Chain 2:
+  org.mule.tooling.amc [osgi.identity; type="osgi.bundle"; version:Version="6.2.5.201705081532"; osgi.identity="org.mule.tooling.amc"; singleton:="true"]
+    require: (osgi.wiring.bundle=jackson-jaxrs)
+     |
+    provide: osgi.wiring.bundle; bundle-version:Version="1.8.3"; osgi.wiring.bundle="jackson-jaxrs"
+  jackson-jaxrs [osgi.identity; type="osgi.bundle"; version:Version="1.8.3"; osgi.identity="jackson-jaxrs"]
+    import: (&(osgi.wiring.package=org.codehaus.jackson.map.type)(version>=1.8.3))
+     |
+    export: osgi.wiring.package: org.codehaus.jackson.map.type; uses:=org.codehaus.jackson.schema
+    export: osgi.wiring.package=org.codehaus.jackson.schema
+  org.codehaus.jackson.mapper [osgi.identity; type="osgi.bundle"; version:Version="1.9.13"; osgi.identity="org.codehaus.jackson.mapper"]
+	at org.eclipse.osgi.container.Module.start(Module.java:444)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1620)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1599)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1571)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1514)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)
+
+!ENTRY org.eclipse.egit.ui 2 0 2017-09-21 10:05:20.213
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Eric'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.equinox.p2.metadata.repository 4 1000 2017-09-21 10:05:33.835
+!MESSAGE No repository found at http://download.eclipse.org/tools/mylyn/update/extras.
+
+!ENTRY org.eclipse.equinox.p2.metadata.repository 4 1000 2017-09-21 10:06:00.463
+!MESSAGE No repository found at http://download.eclipse.org/tools/mylyn/update/weekly/extras.
+
+!ENTRY org.eclipse.jface.text 2 0 2017-09-21 10:20:04.351
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2017-09-21 10:20:04.383
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+
+!ENTRY org.eclipse.jface.text 2 0 2017-09-21 10:33:01.303
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2017-09-21 10:33:01.331
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'

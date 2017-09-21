@@ -1,0 +1,5 @@
+package com.sismo.mx.services;
+
+public class AppUserServiceImpl {
+
+}

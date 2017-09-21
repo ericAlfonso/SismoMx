@@ -1,0 +1,5 @@
+package com.sismo.mx.rest.vo;
+
+public class FamiliarVO {
+
+}

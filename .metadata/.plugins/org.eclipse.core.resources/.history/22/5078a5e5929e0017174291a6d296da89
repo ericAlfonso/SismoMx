@@ -1,0 +1,57 @@
+package com.sismo.mx.rest.parser.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Component;
+
+import com.sismo.mx.commons.dto.AppUserDTO;
+import com.sismo.mx.commons.dto.EmailDTO;
+import com.sismo.mx.rest.parser.AppUserParser;
+import com.sismo.mx.rest.vo.AppUserVO;
+import com.sismo.mx.rest.vo.EmailVO;
+
+@Component
+public class AppUserPaserImpl implements AppUserParser{
+
+	@Override
+	public List<AppUserVO> parseToUserVOList(List<AppUserDTO> appUserDTOs) {
+		List<AppUserVO> vos = new ArrayList<>();
+		if(appUserDTOs == null)
+			return vos;
+		
+		for(AppUserDTO appUserDTO: appUserDTOs) {
+			vos.add(this.parseToUserVO(appUserDTO));
+		}
+		
+		return vos;
+	}
+
+	@Override
+	public AppUserVO parseToUserVO(AppUserDTO appUserDTO) {
+		if(appUserDTO == null)
+			return null;
+		
+		AppUserVO vo = new AppUserVO();
+		vo.setEmail(appUserDTO.getEmail());
+		vo.setUsername(appUserDTO.getUsername());
+		vo.setPassword(appUserDTO.getPassword());
+		vo.setIsAdmin(appUserDTO.getIsAdmin());
+		
+		return vo;
+	}
+
+	@Override
+	public EmailDTO parseToEmailDTO(EmailVO emailVO) {
+		if(emailVO == null)
+			return null;
+		
+		EmailDTO dto = new EmailDTO();
+		dto.setTo(emailVO.getTo());
+		dto.setSubject(emailVO.getSubject());
+		dto.setBody(emailVO.getBody());
+		
+		return dto;
+	}
+
+}

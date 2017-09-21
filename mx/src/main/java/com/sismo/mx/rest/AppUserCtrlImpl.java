@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sismo.mx.commons.AppUserService;
@@ -52,7 +53,7 @@ public class AppUserCtrlImpl implements AppUserCtrl{
 	}
 
 	@Override
-	@RequestMapping(value = "/send-email", method = RequestMethod.POST)
+	@RequestMapping(value = "/info", method = RequestMethod.POST)
 	public ResponseEntity sendEmail(
 			 @Valid @RequestBody EmailVO emailVO, BindingResult bindingResult) throws MessagingException {
 		logger.info("CTRL: sendEmail method");
@@ -61,7 +62,7 @@ public class AppUserCtrlImpl implements AppUserCtrl{
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		
 			EmailDTO dto = this.appUserParser.parseToEmailDTO(emailVO);
-			this.appUserService.sendEmail(dto);
+			this.appUserService.saveInfo(dto); 
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 			
 	}
@@ -123,7 +124,7 @@ public class AppUserCtrlImpl implements AppUserCtrl{
 		try {
 			AppUserDTO dto = this.appUserParser.parseToUserDTO(appUserVO);
 			this.appUserService.login(dto);
-			return new ResponseEntity(HttpStatus.OK);
+			return new ResponseEntity(HttpStatus.NO_CONTENT);
 			
 		} catch (ForbiddenException e) {
 			return new ResponseEntity(HttpStatus.FORBIDDEN);
@@ -131,5 +132,15 @@ public class AppUserCtrlImpl implements AppUserCtrl{
 		
 		
 		
-	}	
+	}
+
+	@Override
+	@RequestMapping(value="/families/familiar/found", method = RequestMethod.GET)
+	public ResponseEntity getFamiliarByName(@RequestParam(name= "name") String name) {
+		logger.info("CTRL: getFamiliarByName method");
+		
+			List<FamiliarDTO> dtos = this.appUserService.getFamiliarByName(name);
+			List<FamiliarVO> vos = this.appUserParser.parseToFamiliarVOList(dtos);
+			return new ResponseEntity<>(vos , HttpStatus.OK);
+	}
 }

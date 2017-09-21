@@ -18,4 +18,5 @@ public interface AppUserCtrl {
 	ResponseEntity getAllFamilies();
 	ResponseEntity getFamilyDetails(Integer id);
 	ResponseEntity login(AppUserVO appUserVO, BindingResult bindingResult);
+	ResponseEntity getFamiliarByName(String name);
  }

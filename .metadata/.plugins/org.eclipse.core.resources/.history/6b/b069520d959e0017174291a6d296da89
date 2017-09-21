@@ -1,0 +1,16 @@
+package com.sismo.mx.commons;
+
+import java.util.List;
+
+import javax.mail.MessagingException;
+
+import com.sismo.mx.commons.dto.AppUserDTO;
+import com.sismo.mx.commons.dto.EmailDTO;
+import com.sismo.mx.commons.dto.FamiliarDTO;
+
+public interface AppUserService {
+
+	List<AppUserDTO> getAllAppUsers();
+	void sendEmail(EmailDTO dto)  throws MessagingException;
+	Long createFamiliar(FamiliarDTO dto);
+}

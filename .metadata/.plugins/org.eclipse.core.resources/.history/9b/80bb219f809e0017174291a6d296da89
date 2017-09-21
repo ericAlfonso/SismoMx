@@ -1,0 +1,5 @@
+package com.sismo.mx.rest;
+
+public interface AppUserCtrl {
+
+}

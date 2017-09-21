@@ -1,0 +1,13 @@
+package com.sismo.mx.commons;
+
+import java.util.List;
+
+import javax.mail.MessagingException;
+
+import com.sismo.mx.commons.dto.AppUserDTO;
+
+public interface AppUserService {
+
+	List<AppUserDTO> getAllAppUsers();
+	void sendEmail(String to, String subject, String body)  throws MessagingException;
+}

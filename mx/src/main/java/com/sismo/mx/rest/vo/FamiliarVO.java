@@ -12,6 +12,8 @@ public class FamiliarVO {
 	@NotNull
 	private Integer contacto;
 	private String image;
+	@NotNull
+	private Integer age;
 	
 	public String getEmail() {
 		return email;
@@ -43,4 +45,11 @@ public class FamiliarVO {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	public Integer getAge() {
+		return age;
+	}
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+	
 }

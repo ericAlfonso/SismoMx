@@ -1,0 +1,10 @@
+package com.sismo.mx.commons;
+
+import java.util.List;
+
+import com.sismo.mx.commons.dto.AppUserDTO;
+
+public interface AppUserService {
+
+	List<AppUserDTO> getAllAppUsers();
+}

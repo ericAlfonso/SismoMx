@@ -66,6 +66,7 @@ public class AppUserPaserImpl implements AppUserParser{
 		dto.setFullname(familiarVO.getFullname());
 		dto.setContacto(familiarVO.getContacto());
 		dto.setImage(familiarVO.getImage());
+		dto.setAge(familiarVO.getAge());
 		
 		return dto;
 	}
@@ -94,6 +95,7 @@ public class AppUserPaserImpl implements AppUserParser{
 		familiarVO.setFullname(dto.getFullname());
 		familiarVO.setImage(dto.getImage());
 		familiarVO.setId(dto.getId());
+		familiarVO.setAge(dto.getAge());
 		
 		return familiarVO;
 	}

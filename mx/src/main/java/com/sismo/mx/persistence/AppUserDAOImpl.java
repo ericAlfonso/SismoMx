@@ -1,5 +1,6 @@
 package com.sismo.mx.persistence;
 
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -10,9 +11,12 @@ public class AppUserDAOImpl extends AbstractDAO<AppUser> implements AppUserDAO{
 
 	@Override
 	public Boolean isSignIn(String username) {
-		return getSession().createCriteria(AppUser.class, "user")
+		boolean exists = ((Number) getSession().createCriteria(AppUser.class, "user")
 				.add(Restrictions.eq("user.username", username))
-				.uniqueResult() != null;
+				.setProjection(Projections.rowCount())
+				.uniqueResult()).intValue() != 0;
+		
+		return exists;
 	}
 
 }

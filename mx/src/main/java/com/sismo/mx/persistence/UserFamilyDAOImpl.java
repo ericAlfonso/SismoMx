@@ -1,10 +1,20 @@
 package com.sismo.mx.persistence;
 
+import java.util.List;
+
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.sismo.mx.persistence.entities.UserFamily;
 
 @Repository
 public class UserFamilyDAOImpl extends AbstractDAO<UserFamily> implements UserFamilyDAO{
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<UserFamily> getFamiliarByName(String name) {
+		return (List<UserFamily>)  getSession().createCriteria(UserFamily.class, "family")
+				.add(Restrictions.like("family.fullname", name)).list();
+	}
 
 }

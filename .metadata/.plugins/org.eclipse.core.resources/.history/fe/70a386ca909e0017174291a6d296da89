@@ -1,0 +1,71 @@
+package com.sismo.mx.services;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.sismo.mx.commons.AppUserService;
+import com.sismo.mx.commons.dto.AppUserDTO;
+import com.sismo.mx.commons.dto.EmailDTO;
+import com.sismo.mx.persistence.AppUserDAO;
+import com.sismo.mx.persistence.entities.AppUser;
+
+@Service
+@Transactional
+public class AppUserServiceImpl implements AppUserService{
+	
+	private static final Logger logger = Logger.getLogger(AppUserService.class);
+
+	@Autowired private AppUserDAO appUserDAO;
+	@Autowired private JavaMailSender javaMailSender;
+	
+	@Override
+	public List<AppUserDTO> getAllAppUsers() {
+		logger.info("SERVICE: getAllAppUsers method");
+		
+		List<AppUser> appUsers = this.appUserDAO.getAll();
+		List<AppUserDTO> appUserDTOs = new ArrayList<>();
+		
+		appUsers.stream().forEach(user -> {
+			AppUserDTO appUserDTO = new AppUserDTO();
+			appUserDTO.setEmail(user.getEmail());
+			appUserDTO.setUsername(user.getUsername());
+			appUserDTO.setPassword(user.getPassword());
+			appUserDTO.setIsAdmin(user.getIsAdmin());
+			appUserDTOs.add(appUserDTO);
+		});
+		
+		return appUserDTOs;
+	}
+
+	@Override
+	public void sendEmail(EmailDTO dto) throws MessagingException {
+		logger.info("SERVICE: sendEmail method");
+		
+		MimeMessage message = javaMailSender.createMimeMessage();
+		MimeMessageHelper helper;
+		
+		helper = new MimeMessageHelper(message, true); // true indicates
+										// multipart message
+		logger.info(dto.getSubject());
+		logger.info(dto.getTo());
+		logger.info(dto.getBody());
+		helper.setSubject(dto.getSubject());
+		helper.setTo(dto.getTo());
+		helper.setText(dto.getBody(), true); // true indicates html
+		// continue using helper object for more functionalities like adding attachments, etc.  
+		
+		logger.info(message);
+		javaMailSender.send(message);
+	}
+
+}

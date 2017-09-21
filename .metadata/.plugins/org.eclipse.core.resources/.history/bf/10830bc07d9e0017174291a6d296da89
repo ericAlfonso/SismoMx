@@ -1,0 +1,11 @@
+package com.sismo.mx.commons.dto;
+
+import javax.persistence.Column;
+
+public class AppUserDTO {
+
+	private String email;
+	private String username;
+	private String password;
+	private Long isAdmin;
+}

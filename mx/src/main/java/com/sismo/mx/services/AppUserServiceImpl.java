@@ -4,12 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,8 +18,10 @@ import com.sismo.mx.commons.exception.ForbiddenException;
 import com.sismo.mx.commons.exception.NotFoundException;
 import com.sismo.mx.persistence.AppUserDAO;
 import com.sismo.mx.persistence.UserFamilyDAO;
+import com.sismo.mx.persistence.UserInfoDAO;
 import com.sismo.mx.persistence.entities.AppUser;
 import com.sismo.mx.persistence.entities.UserFamily;
+import com.sismo.mx.persistence.entities.UserInfo;
 
 @Service
 @Transactional
@@ -31,8 +30,8 @@ public class AppUserServiceImpl implements AppUserService{
 	private static final Logger logger = Logger.getLogger(AppUserService.class);
 
 	@Autowired private AppUserDAO appUserDAO;
-	@Autowired private JavaMailSender javaMailSender;
 	@Autowired private UserFamilyDAO userFamilyDAO;
+	@Autowired private UserInfoDAO userInfoDAO;
 	
 	@Override
 	public List<AppUserDTO> getAllAppUsers() {
@@ -54,25 +53,14 @@ public class AppUserServiceImpl implements AppUserService{
 	}
 
 	@Override
-	public void sendEmail(EmailDTO dto) throws MessagingException {
-		logger.info("SERVICE: sendEmail method");
+	public void saveInfo(EmailDTO dto) throws MessagingException {
+		logger.info("SERVICE: saveInfo method");
 		
-		MimeMessage message = javaMailSender.createMimeMessage();
-		MimeMessageHelper helper;
-		
-		helper = new MimeMessageHelper(message, true); // true indicates
-										// multipart message
-		logger.info(dto.getSubject());
-		logger.info(dto.getTo());
-		logger.info(dto.getBody());
-		helper.setSubject(dto.getSubject());
-		helper.setTo(dto.getTo());
-		helper.setText(dto.getBody(), true); // true indicates html
-		// continue using helper object for more functionalities like adding attachments, etc.  
-		
-		logger.info(message.getFrom());
-		javaMailSender.send(message);
-		logger.info("paso");
+		String info = dto.getTo() + dto.getSubject() + dto.getBody();
+		UserInfo userInfo = new UserInfo();
+		userInfo.setInfo(info);
+		Integer id = (Integer) this.userInfoDAO.create(userInfo);
+		logger.info("Info created : " + id);
 	}
 
 	@Override
@@ -84,6 +72,7 @@ public class AppUserServiceImpl implements AppUserService{
 		family.setEmail(dto.getEmail());
 		family.setFullname(dto.getFullname());
 		family.setImage(dto.getImage());
+		family.setAge(dto.getAge());
 		
 		Integer id = (Integer) this.userFamilyDAO.create(family);
 		return id;
@@ -103,6 +92,7 @@ public class AppUserServiceImpl implements AppUserService{
 			dto.setFullname(familiar.getFullname());
 			dto.setImage(familiar.getImage());
 			dto.setId(familiar.getId());
+			dto.setAge(familiar.getAge());
 			dtos.add(dto);
 			
 		});
@@ -125,6 +115,7 @@ public class AppUserServiceImpl implements AppUserService{
 		dto.setFullname(family.getFullname());
 		dto.setImage(family.getImage());
 		dto.setId(family.getId());
+		dto.setAge(family.getAge());
 		
 		return dto;
 		
@@ -133,10 +124,32 @@ public class AppUserServiceImpl implements AppUserService{
 	@Override
 	public void login(AppUserDTO dto) throws ForbiddenException {
 		Boolean isSignIn = this.appUserDAO.isSignIn(dto.getUsername());
-		if(isSignIn){
+		if(!isSignIn){
 			throw new ForbiddenException("No registrado");
 		}
 		
+	}
+
+	@Override
+	public List<FamiliarDTO> getFamiliarByName(String name){
+		logger.info("SERVICE: getFamiliarByName method");
+		
+		List<UserFamily> families = this.userFamilyDAO.getFamiliarByName(name);
+		List<FamiliarDTO> dtos = new ArrayList<>();
+		
+		families.stream().forEach(f -> {
+			FamiliarDTO dto = new FamiliarDTO();
+			dto.setContacto(f.getContacto());
+			dto.setEmail(f.getEmail());
+			dto.setFullname(f.getFullname());
+			dto.setId(f.getId());
+			dto.setImage(f.getImage());
+			dto.setAge(f.getAge());
+			
+			dtos.add(dto);
+		});
+		
+		return dtos;
 	}
 
 }

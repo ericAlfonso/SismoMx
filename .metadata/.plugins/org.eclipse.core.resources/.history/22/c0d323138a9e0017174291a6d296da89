@@ -1,0 +1,10 @@
+package com.sismo.mx.rest;
+
+import org.springframework.http.ResponseEntity;
+
+@SuppressWarnings("rawtypes")
+public interface AppUserCtrl {
+
+	ResponseEntity getAllAppUsers();
+	ResponseEntity sendEmail();
+}

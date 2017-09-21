@@ -1,0 +1,5 @@
+package com.sismo.mx.commons.dto;
+
+public class AppUserDTO {
+
+}

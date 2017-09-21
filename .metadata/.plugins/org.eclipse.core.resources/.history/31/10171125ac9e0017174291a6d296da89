@@ -1,0 +1,10 @@
+package com.sismo.mx.persistence;
+
+import org.springframework.stereotype.Repository;
+
+import com.sismo.mx.persistence.entities.AppUser;
+
+@Repository
+public class AppUserDAOImpl extends AbstractDAO<AppUser> implements AppUserDAO{
+
+}

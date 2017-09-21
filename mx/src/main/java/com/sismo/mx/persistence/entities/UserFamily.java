@@ -23,6 +23,8 @@ public class UserFamily {
 	private Integer contacto;
 	@Column(name = "IMAGE")
 	private String image;
+	@Column(name = "AGE", nullable = false)
+	private Integer age;
 	
 	public Integer getId() {
 		return id;
@@ -53,5 +55,11 @@ public class UserFamily {
 	}
 	public void setImage(String image) {
 		this.image = image;
+	}
+	public Integer getAge() {
+		return age;
+	}
+	public void setAge(Integer age) {
+		this.age = age;
 	}
 }

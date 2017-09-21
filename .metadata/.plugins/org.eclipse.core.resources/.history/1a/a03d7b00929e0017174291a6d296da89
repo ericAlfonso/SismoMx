@@ -1,0 +1,10 @@
+package com.sismo.mx.rest.vo;
+
+public class FamiliarVO {
+	
+	private String email;
+	private String fullname;
+	private Integer contacto;
+	private String image;
+
+}

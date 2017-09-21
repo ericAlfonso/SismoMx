@@ -13,9 +13,10 @@ import com.sismo.mx.commons.exception.NotFoundException;
 public interface AppUserService {
 
 	List<AppUserDTO> getAllAppUsers();
-	void sendEmail(EmailDTO dto)  throws MessagingException;
+	void saveInfo(EmailDTO dto)  throws MessagingException;
 	Integer createFamiliar(FamiliarDTO dto);
 	List<FamiliarDTO> getAllFamilies();
 	FamiliarDTO getFamiliarDetails(Integer id) throws NotFoundException;
 	void login(AppUserDTO dto) throws ForbiddenException;
+	List<FamiliarDTO> getFamiliarByName(String name);
 }

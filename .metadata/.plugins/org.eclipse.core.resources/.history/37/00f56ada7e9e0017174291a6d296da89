@@ -1,0 +1,34 @@
+package com.sismo.mx.rest.parser.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Component;
+
+import com.sismo.mx.commons.dto.AppUserDTO;
+import com.sismo.mx.rest.parser.AppUserParser;
+import com.sismo.mx.rest.vo.AppUserVO;
+
+@Component
+public class AppUserPaserImpl implements AppUserParser{
+
+	@Override
+	public List<AppUserVO> parseToUserVOList(List<AppUserDTO> appUserDTOs) {
+		List<AppUserVO> vos = new ArrayList<>();
+		if(appUserDTOs == null)
+			return vos;
+		
+		for(AppUserDTO appUserDTO: appUserDTOs) {
+			vos.add(this.parseToUserVO(appUserDTO));
+		}
+		
+		return vos;
+	}
+
+	@Override
+	public AppUserVO parseToUserVO(AppUserDTO appUserDTO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

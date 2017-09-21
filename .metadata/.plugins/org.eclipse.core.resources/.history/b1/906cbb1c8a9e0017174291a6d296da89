@@ -1,0 +1,13 @@
+package com.sismo.mx.rest;
+
+import org.springframework.http.ResponseEntity;
+
+import com.sismo.mx.commons.dto.EmailDTO;
+import com.sismo.mx.rest.vo.EmailVO;
+
+@SuppressWarnings("rawtypes")
+public interface AppUserCtrl {
+
+	ResponseEntity getAllAppUsers();
+	ResponseEntity sendEmail(EmailVO emailVO);
+}

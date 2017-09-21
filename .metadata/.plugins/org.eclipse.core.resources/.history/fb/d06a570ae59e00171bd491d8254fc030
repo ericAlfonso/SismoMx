@@ -1,0 +1,13 @@
+package com.sismo.mx.persistence;
+
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Repository;
+
+import com.sismo.mx.persistence.entities.AppUser;
+import com.sismo.mx.persistence.entities.UserInfo;
+
+@Repository
+public class UserInfoDAOImpl extends AbstractDAO<UserInfo> implements UserInfoDAO{
+
+}
